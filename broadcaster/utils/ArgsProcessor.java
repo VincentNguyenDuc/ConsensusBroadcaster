@@ -7,11 +7,11 @@ public class ArgsProcessor {
     }
 
     public static int getRmiRegistryPort(String[] args) {
-        return 0;
+        return 1099;
     }
 
     public static String getRmiRegistryHost(String[] args) {
         // TODO: Parse Rmi registry host string here
-        return "";
+        return "127.0.0.1";
     }
 }
