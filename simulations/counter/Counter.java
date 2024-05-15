@@ -1,6 +1,8 @@
 package simulations.counter;
 
-public class Counter implements ICounter {
+import broadcaster.processor.ICommandProcessor;
+
+public class Counter implements ICounter, ICommandProcessor {
 
     private int value;
 
@@ -12,5 +14,14 @@ public class Counter implements ICounter {
     @Override
     public int getValue() {
         return this.value;
+    }
+
+    @Override
+    public void processCommand(String aCommand) {
+        if ("increment".equals(aCommand)) {
+            this.value++;
+        } else if ("get".equals(aCommand)) {
+            System.out.println(this.value);
+        }
     }
 }
