@@ -1,6 +1,7 @@
-package broadcaster.server;
+package broadcaster.bean;
 
-import broadcaster.bean.BroadcastingBean;
+import broadcaster.remote.server.IRemoteRmiServer;
+import broadcaster.remote.server.RemoteRmiServer;
 import broadcaster.utils.ArgsProcessor;
 
 import java.rmi.RemoteException;
@@ -8,9 +9,15 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 
-public class BroadcastingServer extends BroadcastingBean {
+public class BroadcastingServerBean extends BroadcastingBean {
 
-    public final static String SERVER = "SERVER";
+    private static final BroadcastingServerBean SERVER_BEAN = new BroadcastingServerBean();
+
+    private BroadcastingServerBean() {}
+
+    public static BroadcastingServerBean getInstance() {
+        return SERVER_BEAN;
+    }
 
     @Override
     public void start(String[] args) {
@@ -25,9 +32,10 @@ public class BroadcastingServer extends BroadcastingBean {
     protected void init(String[] args) throws RemoteException {
         final String rmiRegistryHost = ArgsProcessor.getRmiRegistryHost(args);
         final int rmiRegistryPort = ArgsProcessor.getRmiRegistryPort(args);
+        final String rmiServerName = ArgsProcessor.getServerName(args);
         final Registry rmiRegistry = LocateRegistry.getRegistry(rmiRegistryHost, rmiRegistryPort);
-        final IRemoteServer remoteServer = new RemoteServer();
+        final IRemoteRmiServer remoteServer = new RemoteRmiServer();
         UnicastRemoteObject.exportObject(remoteServer, 0);
-        rmiRegistry.rebind(SERVER, remoteServer);
+        rmiRegistry.rebind(rmiServerName, remoteServer);
     }
 }

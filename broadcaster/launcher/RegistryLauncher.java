@@ -1,4 +1,4 @@
-package broadcaster;
+package broadcaster.launcher;
 
 import broadcaster.utils.ArgsProcessor;
 

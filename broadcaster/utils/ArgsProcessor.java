@@ -3,7 +3,7 @@ package broadcaster.utils;
 public class ArgsProcessor {
 
     public static String getServerName(String[] args) {
-        return "";
+        return "SERVER";
     }
 
     public static int getRmiRegistryPort(String[] args) {
@@ -11,7 +11,6 @@ public class ArgsProcessor {
     }
 
     public static String getRmiRegistryHost(String[] args) {
-        // TODO: Parse Rmi registry host string here
         return "127.0.0.1";
     }
 }
