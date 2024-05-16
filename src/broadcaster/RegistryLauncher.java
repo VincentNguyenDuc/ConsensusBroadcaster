@@ -1,4 +1,4 @@
-package src.broadcaster.launcher;
+package src.broadcaster;
 
 import src.broadcaster.utils.ArgsProcessor;
 
@@ -23,7 +23,7 @@ public class RegistryLauncher {
             scanner.nextLine();
 
         } catch (Exception e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
