@@ -1,8 +1,12 @@
 package src.broadcaster.mvc.controller;
 
+import java.rmi.RemoteException;
 import java.util.Scanner;
 
+import src.broadcaster.bean.BroadcastingClientBean;
 import src.broadcaster.mvc.model.IModel;
+import src.broadcaster.remote.client.IRemoteRmiClient;
+import src.broadcaster.remote.server.IRemoteRmiServer;
 
 public class Controller implements IController {
 
@@ -31,6 +35,17 @@ public class Controller implements IController {
 
             try {
                 this.model.setCommand(userInput);
+
+                // TODO: Move this into an out coupler
+                BroadcastingClientBean clientBean = BroadcastingClientBean.getInstance();
+                final IRemoteRmiServer serverProxy = clientBean.getServerProxy();
+                final IRemoteRmiClient clientProxy = clientBean.getClientProxy();
+                try {
+                    serverProxy.broadcast(clientProxy, "increment");
+                } catch (RemoteException e) {
+                    throw new RuntimeException(e);
+                }
+
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }

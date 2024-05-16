@@ -25,7 +25,7 @@ public class BroadcastingServerBean extends BroadcastingBean {
         try {
             this.init(args);
         } catch (Exception e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 

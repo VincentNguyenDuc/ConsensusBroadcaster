@@ -1,4 +1,4 @@
-package src.broadcaster.launcher;
+package src.broadcaster;
 
 import src.broadcaster.bean.BroadcastingClientBean;
 
