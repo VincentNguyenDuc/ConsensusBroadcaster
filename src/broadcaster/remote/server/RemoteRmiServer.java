@@ -12,7 +12,7 @@ public class RemoteRmiServer implements IRemoteRmiServer {
     @Override
     public void registerRmiClient(IRemoteRmiClient aRmiClient) {
         this.rmiClients.add(aRmiClient);
-        System.out.println("Hello from client: " + aRmiClient.toString());
+        System.out.println("Registered: " + aRmiClient.toString());
     }
 
     @Override

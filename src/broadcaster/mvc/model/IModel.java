@@ -6,6 +6,8 @@ import java.beans.PropertyChangeSupport;
 public interface IModel{
     void setCommand(final String newInput) throws Exception;
 
+    void evaluateCommand(final String aCommand);
+
     String getCommand() throws Exception;
 
     int getResult() throws Exception;

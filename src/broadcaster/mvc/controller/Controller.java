@@ -1,12 +1,9 @@
 package src.broadcaster.mvc.controller;
 
-import java.rmi.RemoteException;
-import java.util.Scanner;
-
-import src.broadcaster.bean.BroadcastingClientBean;
 import src.broadcaster.mvc.model.IModel;
-import src.broadcaster.remote.client.IRemoteRmiClient;
-import src.broadcaster.remote.server.IRemoteRmiServer;
+import src.broadcaster.utils.BroadcasterConstants;
+
+import java.util.Scanner;
 
 public class Controller implements IController {
 
@@ -23,10 +20,10 @@ public class Controller implements IController {
         while (true) {
             System.out.println("Please enter a command: ");
             final String userInput = scanner.nextLine().toLowerCase();
-            if ("quit".equals(userInput)) {
+            if (BroadcasterConstants.QUIT_COMMAND.equals(userInput)) {
                 try {
                     this.model.terminate();
-                    System.out.println("Terminate");
+                    System.out.println(BroadcasterConstants.TERMINATE);
                     break;
                 } catch (Exception e) {
                     throw new RuntimeException(e);
@@ -35,17 +32,6 @@ public class Controller implements IController {
 
             try {
                 this.model.setCommand(userInput);
-
-                // TODO: Move this into an out coupler
-                BroadcastingClientBean clientBean = BroadcastingClientBean.getInstance();
-                final IRemoteRmiServer serverProxy = clientBean.getServerProxy();
-                final IRemoteRmiClient clientProxy = clientBean.getClientProxy();
-                try {
-                    serverProxy.broadcast(clientProxy, "increment");
-                } catch (RemoteException e) {
-                    throw new RuntimeException(e);
-                }
-
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }

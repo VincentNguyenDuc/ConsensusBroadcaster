@@ -1,12 +1,13 @@
 package src.simulations.counter;
 
 import src.broadcaster.mvc.model.BaseModel;
+import src.broadcaster.utils.BroadcasterConstants;
 
 public class CounterModel extends BaseModel {
 
     @Override
-    protected void evaluateCommand() {
-        if (super.getCommand().equals("increment")) {
+    public void evaluateCommand(final String aCommand) {
+        if (BroadcasterConstants.INCREMENT_COMMAND.equals(aCommand)) {
             this.increment();
         }
     }
@@ -18,8 +19,6 @@ public class CounterModel extends BaseModel {
 
     @Override
     public void increment() {
-        final int oldResult = this.getResult();
-        this.setResult(oldResult + 1);
-        this.getPropertyChangeSupport().firePropertyChange("Increment", oldResult, this.getResult());
+        super.setResult(this.getResult() + 1);
     }
 }
