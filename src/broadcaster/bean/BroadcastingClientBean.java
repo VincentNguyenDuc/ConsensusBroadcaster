@@ -5,12 +5,14 @@ import src.broadcaster.mvc.controller.IController;
 import src.broadcaster.mvc.model.IModel;
 import src.broadcaster.mvc.view.IView;
 import src.broadcaster.mvc.view.View;
+import src.broadcaster.remote.client.ClientOutCoupler;
 import src.broadcaster.remote.client.IRemoteRmiClient;
 import src.broadcaster.remote.client.RemoteRmiClient;
 import src.broadcaster.remote.server.IRemoteRmiServer;
 import src.broadcaster.utils.ArgsProcessor;
 import src.simulations.counter.CounterModel;
 
+import java.beans.PropertyChangeListener;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
@@ -36,11 +38,14 @@ public class BroadcastingClientBean extends BroadcastingBean {
             this.model = new CounterModel();
 
             // Instantiate the view
-            View view = new View();
+            IView view = new View();
+            PropertyChangeListener outCoupler = new ClientOutCoupler();
+
 
             // Make the view an observable of the model
             try {
                 this.model.addPropertyChangeListener(view);
+                this.model.addPropertyChangeListener(outCoupler);
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }

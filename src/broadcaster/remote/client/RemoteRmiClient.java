@@ -7,9 +7,9 @@ import java.rmi.RemoteException;
 public class RemoteRmiClient implements IRemoteRmiClient {
 
     @Override
-    public void rmiReceiveCommand(String aCommand) throws RemoteException {
+    public void rmiReceiveCommand(final String aCommand) throws RemoteException {
         try {
-            BroadcastingClientBean.getInstance().getModel().setCommand(aCommand);
+            BroadcastingClientBean.getInstance().getModel().evaluateCommand(aCommand);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
