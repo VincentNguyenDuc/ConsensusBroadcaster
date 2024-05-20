@@ -12,7 +12,13 @@ public class RemoteRmiServer implements IRemoteRmiServer {
     @Override
     public void registerRmiClient(final IRemoteRmiClient aRmiClient) {
         this.rmiClients.add(aRmiClient);
-        System.out.println("Registered: " + aRmiClient.toString());
+        System.out.println("Registered: " + aRmiClient);
+    }
+
+    @Override
+    public void unregisterRmiClient(final IRemoteRmiClient aRmiClient) throws RemoteException {
+        this.rmiClients.removeIf(aRmiClient::equals);
+        System.out.println("Unregistered: " + aRmiClient);
     }
 
     @Override

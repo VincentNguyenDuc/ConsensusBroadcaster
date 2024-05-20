@@ -9,7 +9,7 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 
-public class BroadcastingServerBean extends BroadcastingBean {
+public class BroadcastingServerBean implements IBroadcastingBean {
 
     private static final BroadcastingServerBean SERVER_BEAN = new BroadcastingServerBean();
 
@@ -30,7 +30,7 @@ public class BroadcastingServerBean extends BroadcastingBean {
     }
 
     @Override
-    protected void init(final String[] args) throws RemoteException {
+    public void init(final String[] args) throws RemoteException {
         final String rmiRegistryHost = ArgsProcessor.getRmiRegistryHost(args);
         final int rmiRegistryPort = ArgsProcessor.getRmiRegistryPort(args);
         final String rmiServerName = ArgsProcessor.getServerName(args);
