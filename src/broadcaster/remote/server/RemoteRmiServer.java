@@ -17,7 +17,7 @@ public class RemoteRmiServer implements IRemoteRmiServer {
 
     @Override
     public void broadcast(IRemoteRmiClient proposer, String aCommand) throws RemoteException {
-        for (IRemoteRmiClient client: this.rmiClients) {
+        for (IRemoteRmiClient client : this.rmiClients) {
             if (!proposer.equals(client)) {
                 client.rmiReceiveCommand(aCommand);
             }

@@ -3,12 +3,12 @@ package src.broadcaster.mvc.model;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
-public interface IModel{
-    void setCommand(final String newInput) throws Exception;
-
+public interface IModel {
     void evaluateCommand(final String aCommand);
 
     String getCommand() throws Exception;
+
+    void setCommand(final String newInput) throws Exception;
 
     int getResult() throws Exception;
 

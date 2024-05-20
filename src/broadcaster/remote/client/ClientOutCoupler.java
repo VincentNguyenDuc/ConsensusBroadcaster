@@ -1,12 +1,12 @@
 package src.broadcaster.remote.client;
 
 import src.broadcaster.bean.BroadcastingClientBean;
+import src.broadcaster.factory.BeanFactory;
 import src.broadcaster.remote.server.IRemoteRmiServer;
 import src.broadcaster.utils.BroadcasterConstants;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.rmi.RemoteException;
 
 public class ClientOutCoupler implements PropertyChangeListener {
     @Override
@@ -19,12 +19,12 @@ public class ClientOutCoupler implements PropertyChangeListener {
 
         final String command = (String) evt.getNewValue();
 
-        BroadcastingClientBean clientBean = BroadcastingClientBean.getInstance();
-        final IRemoteRmiServer serverProxy = clientBean.getServerProxy();
-        final IRemoteRmiClient clientProxy = clientBean.getClientProxy();
         try {
+            BroadcastingClientBean clientBean = BeanFactory.getClientBean();
+            final IRemoteRmiServer serverProxy = clientBean.getServerProxy();
+            final IRemoteRmiClient clientProxy = clientBean.getClientProxy();
             serverProxy.broadcast(clientProxy, command);
-        } catch (RemoteException e) {
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }

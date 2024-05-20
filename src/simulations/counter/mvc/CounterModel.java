@@ -1,9 +1,9 @@
-package src.simulations.counter;
+package src.simulations.counter.mvc;
 
-import src.broadcaster.mvc.model.BaseModel;
+import src.broadcaster.mvc.model.Model;
 import src.broadcaster.utils.BroadcasterConstants;
 
-public class CounterModel extends BaseModel {
+public class CounterModel extends Model implements ICounter {
 
     @Override
     public void evaluateCommand(final String aCommand) {
