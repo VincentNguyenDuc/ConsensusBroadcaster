@@ -22,7 +22,7 @@ public class CounterRegistryLauncher {
             final Scanner scanner = new Scanner(System.in);
             scanner.nextLine();
 
-        } catch (Exception e) {
+        } catch (final Exception e) {
             throw new RuntimeException(e);
         }
     }

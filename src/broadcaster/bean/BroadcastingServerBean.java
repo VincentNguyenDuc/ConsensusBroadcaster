@@ -21,16 +21,16 @@ public class BroadcastingServerBean extends BroadcastingBean {
     }
 
     @Override
-    public void start(String[] args) {
+    public void start(final String[] args) {
         try {
             this.init(args);
-        } catch (Exception e) {
+        } catch (final Exception e) {
             throw new RuntimeException(e);
         }
     }
 
     @Override
-    protected void init(String[] args) throws RemoteException {
+    protected void init(final String[] args) throws RemoteException {
         final String rmiRegistryHost = ArgsProcessor.getRmiRegistryHost(args);
         final int rmiRegistryPort = ArgsProcessor.getRmiRegistryPort(args);
         final String rmiServerName = ArgsProcessor.getServerName(args);

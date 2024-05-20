@@ -25,14 +25,14 @@ public class Controller implements IController {
                     this.model.terminate();
                     System.out.println(BroadcasterConstants.TERMINATE);
                     break;
-                } catch (Exception e) {
+                } catch (final Exception e) {
                     throw new RuntimeException(e);
                 }
             }
 
             try {
                 this.model.setCommand(userInput);
-            } catch (Exception e) {
+            } catch (final Exception e) {
                 throw new RuntimeException(e);
             }
         }
