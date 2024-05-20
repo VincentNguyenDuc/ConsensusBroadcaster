@@ -6,7 +6,7 @@ import src.simulations.counter.mvc.ICounter;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
-public abstract class Model implements IModel, ICounter {
+public abstract class Model implements IModel {
 
     private final PropertyChangeSupport propertyChangeSupport = new PropertyChangeSupport(this);
     private String command;
@@ -47,5 +47,10 @@ public abstract class Model implements IModel, ICounter {
 
     public void removePropertyChangeListener(final PropertyChangeListener aListener) {
         this.propertyChangeSupport.removePropertyChangeListener(aListener);
+    }
+
+    @Override
+    public void terminate() {
+        System.exit(0);
     }
 }
