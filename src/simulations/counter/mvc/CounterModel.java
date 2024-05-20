@@ -13,11 +13,6 @@ public class CounterModel extends Model implements ICounter {
     }
 
     @Override
-    public void terminate() {
-        System.exit(0);
-    }
-
-    @Override
     public void increment() {
         super.setResult(this.getResult() + 1);
     }
