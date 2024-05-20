@@ -1,7 +1,6 @@
 package src.broadcaster.mvc.model;
 
 import src.broadcaster.utils.BroadcasterConstants;
-import src.simulations.counter.mvc.ICounter;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;

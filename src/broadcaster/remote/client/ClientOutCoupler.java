@@ -10,7 +10,7 @@ import java.beans.PropertyChangeListener;
 
 public class ClientOutCoupler implements PropertyChangeListener {
     @Override
-    public void propertyChange(PropertyChangeEvent evt) {
+    public void propertyChange(final PropertyChangeEvent evt) {
 
         // Only listen for command property
         if (!BroadcasterConstants.COMMAND_PROPERTY.equals(evt.getPropertyName())) {
@@ -20,11 +20,11 @@ public class ClientOutCoupler implements PropertyChangeListener {
         final String command = (String) evt.getNewValue();
 
         try {
-            BroadcastingClientBean clientBean = BeanFactory.getClientBean();
+            final BroadcastingClientBean clientBean = BeanFactory.getClientBean();
             final IRemoteRmiServer serverProxy = clientBean.getServerProxy();
             final IRemoteRmiClient clientProxy = clientBean.getClientProxy();
             serverProxy.broadcast(clientProxy, command);
-        } catch (Exception e) {
+        } catch (final Exception e) {
             throw new RuntimeException(e);
         }
     }

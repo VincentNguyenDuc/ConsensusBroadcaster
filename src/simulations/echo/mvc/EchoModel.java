@@ -4,12 +4,12 @@ import src.broadcaster.mvc.model.Model;
 
 public class EchoModel extends Model implements IEcho {
     @Override
-    public void evaluateCommand(String aCommand) {
+    public void evaluateCommand(final String aCommand) {
         this.echo(aCommand);
     }
 
     @Override
-    public void echo(String aMessage) {
+    public void echo(final String aMessage) {
         System.out.println(aMessage);
     }
 }

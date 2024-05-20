@@ -11,7 +11,8 @@ import src.simulations.echo.mvc.EchoModel;
 import java.beans.PropertyChangeListener;
 
 public class EchoBroadcastingClientBean extends BroadcastingClientBean {
-    protected EchoBroadcastingClientBean() {}
+    protected EchoBroadcastingClientBean() {
+    }
 
     public static BroadcastingClientBean getInstance() {
         if (CLIENT_BEAN == null) {
@@ -21,7 +22,7 @@ public class EchoBroadcastingClientBean extends BroadcastingClientBean {
     }
 
     @Override
-    public void start(String[] args) {
+    public void start(final String[] args) {
         super.start(args);
         this.model = new EchoModel();
         // Instantiate the view
@@ -32,7 +33,7 @@ public class EchoBroadcastingClientBean extends BroadcastingClientBean {
         try {
             this.model.addPropertyChangeListener(view);
             this.model.addPropertyChangeListener(outCoupler);
-        } catch (Exception e) {
+        } catch (final Exception e) {
             throw new RuntimeException(e);
         }
 

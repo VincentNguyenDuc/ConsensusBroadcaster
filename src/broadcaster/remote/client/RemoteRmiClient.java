@@ -10,7 +10,7 @@ public class RemoteRmiClient implements IRemoteRmiClient {
     public void rmiReceiveCommand(final String aCommand) throws RemoteException {
         try {
             BeanFactory.getClientBean().getModel().evaluateCommand(aCommand);
-        } catch (Exception e) {
+        } catch (final Exception e) {
             throw new RuntimeException(e);
         }
     }

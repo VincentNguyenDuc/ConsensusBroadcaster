@@ -10,14 +10,14 @@ public class RemoteRmiServer implements IRemoteRmiServer {
     List<IRemoteRmiClient> rmiClients = new ArrayList<IRemoteRmiClient>();
 
     @Override
-    public void registerRmiClient(IRemoteRmiClient aRmiClient) {
+    public void registerRmiClient(final IRemoteRmiClient aRmiClient) {
         this.rmiClients.add(aRmiClient);
         System.out.println("Registered: " + aRmiClient.toString());
     }
 
     @Override
-    public void broadcast(IRemoteRmiClient proposer, String aCommand) throws RemoteException {
-        for (IRemoteRmiClient client : this.rmiClients) {
+    public void broadcast(final IRemoteRmiClient proposer, final String aCommand) throws RemoteException {
+        for (final IRemoteRmiClient client : this.rmiClients) {
             if (!proposer.equals(client)) {
                 client.rmiReceiveCommand(aCommand);
             }

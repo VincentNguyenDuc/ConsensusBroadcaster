@@ -22,15 +22,15 @@ public class BroadcastingClientBean extends BroadcastingBean {
     protected BroadcastingClientBean() {
     }
 
-    public void start(String[] args) {
+    public void start(final String[] args) {
         try {
             this.init(args);
-        } catch (Exception e) {
+        } catch (final Exception e) {
             throw new RuntimeException(e);
         }
     }
 
-    protected void init(String[] args) throws RemoteException, NotBoundException {
+    protected void init(final String[] args) throws RemoteException, NotBoundException {
         // Look up server proxy from RMI registry
         final String rmiRegistryHost = ArgsProcessor.getRmiRegistryHost(args);
         final int rmiRegistryPort = ArgsProcessor.getRmiRegistryPort(args);
