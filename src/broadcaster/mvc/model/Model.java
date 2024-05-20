@@ -1,27 +1,27 @@
 package src.broadcaster.mvc.model;
 
 import src.broadcaster.utils.BroadcasterConstants;
-import src.simulations.counter.ICounter;
+import src.simulations.counter.mvc.ICounter;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
-public abstract class BaseModel implements IModel, ICounter {
+public abstract class Model implements IModel, ICounter {
 
+    private final PropertyChangeSupport propertyChangeSupport = new PropertyChangeSupport(this);
     private String command;
     private int result;
-    private final PropertyChangeSupport propertyChangeSupport = new PropertyChangeSupport(this);
+
+    @Override
+    public String getCommand() {
+        return this.command;
+    }
 
     @Override
     public void setCommand(final String newCommand) {
         this.command = newCommand;
         this.propertyChangeSupport.firePropertyChange(BroadcasterConstants.COMMAND_PROPERTY, null, newCommand);
         this.evaluateCommand(newCommand);
-    }
-
-    @Override
-    public String getCommand() {
-        return this.command;
     }
 
     @Override

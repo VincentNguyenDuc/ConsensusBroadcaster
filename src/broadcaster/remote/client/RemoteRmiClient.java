@@ -1,6 +1,6 @@
 package src.broadcaster.remote.client;
 
-import src.broadcaster.bean.BroadcastingClientBean;
+import src.broadcaster.factory.BeanFactory;
 
 import java.rmi.RemoteException;
 
@@ -9,7 +9,7 @@ public class RemoteRmiClient implements IRemoteRmiClient {
     @Override
     public void rmiReceiveCommand(final String aCommand) throws RemoteException {
         try {
-            BroadcastingClientBean.getInstance().getModel().evaluateCommand(aCommand);
+            BeanFactory.getClientBean().getModel().evaluateCommand(aCommand);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

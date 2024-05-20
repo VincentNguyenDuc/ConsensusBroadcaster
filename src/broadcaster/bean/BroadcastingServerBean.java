@@ -13,7 +13,7 @@ public class BroadcastingServerBean extends BroadcastingBean {
 
     private static final BroadcastingServerBean SERVER_BEAN = new BroadcastingServerBean();
 
-    private BroadcastingServerBean() {
+    protected BroadcastingServerBean() {
     }
 
     public static BroadcastingServerBean getInstance() {

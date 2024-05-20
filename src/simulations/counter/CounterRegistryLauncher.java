@@ -1,11 +1,11 @@
-package src.broadcaster;
+package src.simulations.counter;
 
 import src.broadcaster.utils.ArgsProcessor;
 
 import java.rmi.registry.LocateRegistry;
 import java.util.Scanner;
 
-public class RegistryLauncher {
+public class CounterRegistryLauncher {
     public static void main(final String[] args) {
 
         try {
