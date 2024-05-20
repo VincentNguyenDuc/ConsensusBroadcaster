@@ -1,9 +1,12 @@
 package src.broadcaster.mvc.model;
 
+import src.broadcaster.bean.BroadcastingClientBean;
+import src.broadcaster.factory.BeanFactory;
 import src.broadcaster.utils.BroadcasterConstants;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.rmi.RemoteException;
 
 public abstract class Model implements IModel {
 
@@ -50,6 +53,14 @@ public abstract class Model implements IModel {
 
     @Override
     public void terminate() {
+        try {
+            final BroadcastingClientBean clientBean = BeanFactory.getClientBean();
+            clientBean.getServerProxy().unregisterRmiClient(
+                    clientBean.getClientProxy()
+            );
+        } catch (final RemoteException e) {
+            throw new RuntimeException(e);
+        }
         System.exit(0);
     }
 }

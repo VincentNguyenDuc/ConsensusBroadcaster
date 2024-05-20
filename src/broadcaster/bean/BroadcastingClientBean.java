@@ -12,7 +12,7 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 
-public class BroadcastingClientBean extends BroadcastingBean {
+public class BroadcastingClientBean implements IBroadcastingBean {
 
     protected static BroadcastingClientBean CLIENT_BEAN;
     protected IModel model;
@@ -30,7 +30,7 @@ public class BroadcastingClientBean extends BroadcastingBean {
         }
     }
 
-    protected void init(final String[] args) throws RemoteException, NotBoundException {
+    public void init(final String[] args) throws RemoteException, NotBoundException {
         // Look up server proxy from RMI registry
         final String rmiRegistryHost = ArgsProcessor.getRmiRegistryHost(args);
         final int rmiRegistryPort = ArgsProcessor.getRmiRegistryPort(args);
