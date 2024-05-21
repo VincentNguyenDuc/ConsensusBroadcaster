@@ -1,11 +1,11 @@
-package src.simulations.echo;
+package src.examples.counter;
 
 import src.broadcaster.utils.ArgsProcessor;
 
 import java.rmi.registry.LocateRegistry;
 import java.util.Scanner;
 
-public class EchoRegistryLauncher {
+public class CounterRegistryLauncher {
     public static void main(final String[] args) {
 
         try {
@@ -26,4 +26,5 @@ public class EchoRegistryLauncher {
             throw new RuntimeException(e);
         }
     }
+
 }

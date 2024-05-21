@@ -20,7 +20,7 @@ public class Controller implements IController {
         while (true) {
             System.out.println("Please enter a command: ");
             final String userInput = scanner.nextLine().toLowerCase();
-            if (BroadcasterConstants.QUIT_COMMAND.equals(userInput)) {
+            if (BroadcasterConstants.QUIT.equals(userInput)) {
                 try {
                     this.model.terminate();
                     System.out.println(BroadcasterConstants.TERMINATE);

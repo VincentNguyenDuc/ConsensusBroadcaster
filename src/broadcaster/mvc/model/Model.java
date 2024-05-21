@@ -35,7 +35,7 @@ public abstract class Model implements IModel {
     public void setResult(final int newResult) {
         final int oldResult = this.result;
         this.result = newResult;
-        this.propertyChangeSupport.firePropertyChange(BroadcasterConstants.RESULT, oldResult, newResult);
+        this.propertyChangeSupport.firePropertyChange(BroadcasterConstants.RESULT_PROPERTY, oldResult, newResult);
     }
 
     @Override

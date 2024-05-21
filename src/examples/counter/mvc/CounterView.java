@@ -1,4 +1,4 @@
-package src.simulations.counter.mvc;
+package src.examples.counter.mvc;
 
 import src.broadcaster.mvc.view.IView;
 
