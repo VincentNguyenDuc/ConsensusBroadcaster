@@ -2,25 +2,23 @@ package examples.counter.bean;
 
 import examples.counter.mvc.CounterModel;
 import examples.counter.mvc.CounterView;
-import src.bean.BroadcastingClientBean;
 import src.mvc.controller.Controller;
 import src.mvc.controller.IController;
 import src.mvc.view.IView;
 import src.remote.client.ClientOutCoupler;
+import src.simulation.ClientSimulation;
 
 import java.beans.PropertyChangeListener;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
-public class CounterBroadcastingClientBean extends BroadcastingClientBean {
-    protected CounterBroadcastingClientBean() {
+public class CounterClientSimulation extends ClientSimulation {
+    public CounterClientSimulation() {
     }
 
-    public static BroadcastingClientBean getInstance() {
-        if (CLIENT_BEAN == null) {
-            CLIENT_BEAN = new CounterBroadcastingClientBean();
-        }
-        return CLIENT_BEAN;
+    @Override
+    public void start(String[] args) {
+        super.start(args);
     }
 
     @Override
@@ -44,4 +42,5 @@ public class CounterBroadcastingClientBean extends BroadcastingClientBean {
         final IController controller = new Controller(this.model);
         controller.processCommands();
     }
+
 }

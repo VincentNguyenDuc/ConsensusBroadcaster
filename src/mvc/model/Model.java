@@ -1,7 +1,7 @@
 package src.mvc.model;
 
-import src.bean.BroadcastingClientBean;
-import src.factory.BeanFactory;
+import src.bean.BeanFactory;
+import src.bean.ConsensusClientBean;
 import src.utils.BroadcasterTracer;
 
 import java.beans.PropertyChangeListener;
@@ -13,6 +13,11 @@ public abstract class Model implements IModel {
     private final PropertyChangeSupport propertyChangeSupport = new PropertyChangeSupport(this);
     private String command;
     private int result;
+
+    @Override
+    public void evaluateCommand(final String aCommand) {
+
+    }
 
     @Override
     public String getCommand() {
@@ -54,7 +59,7 @@ public abstract class Model implements IModel {
     @Override
     public void terminate() {
         try {
-            final BroadcastingClientBean clientBean = BeanFactory.getClientBean();
+            final ConsensusClientBean clientBean = BeanFactory.getClientBean();
             clientBean.getServerProxy().unregisterRmiClient(
                     clientBean.getClientProxy()
             );

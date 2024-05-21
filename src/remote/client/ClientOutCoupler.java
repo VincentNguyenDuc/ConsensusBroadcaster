@@ -1,7 +1,7 @@
 package src.remote.client;
 
-import src.bean.BroadcastingClientBean;
-import src.factory.BeanFactory;
+import src.bean.BeanFactory;
+import src.bean.ConsensusClientBean;
 import src.remote.server.IRemoteRmiServer;
 import src.utils.BroadcasterTracer;
 
@@ -20,7 +20,7 @@ public class ClientOutCoupler implements PropertyChangeListener {
         final String command = (String) evt.getNewValue();
 
         try {
-            final BroadcastingClientBean clientBean = BeanFactory.getClientBean();
+            final ConsensusClientBean clientBean = BeanFactory.getClientBean();
             final IRemoteRmiServer serverProxy = clientBean.getServerProxy();
             final IRemoteRmiClient clientProxy = clientBean.getClientProxy();
             serverProxy.broadcast(clientProxy, command);

@@ -1,6 +1,6 @@
 package src.utils;
 
-public enum IpcMechanisms {
+public enum IpcMechanism {
     RMI,
     NIO
 }

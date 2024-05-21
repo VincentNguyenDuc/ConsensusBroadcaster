@@ -1,4 +1,4 @@
-package src.bean;
+package src.simulation;
 
 import src.remote.server.IRemoteRmiServer;
 import src.remote.server.RemoteRmiServer;
@@ -9,20 +9,7 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 
-public class BroadcastingServerBean implements IBroadcastingBean {
-
-    protected static BroadcastingServerBean SERVER_BEAN;
-
-    protected BroadcastingServerBean() {
-    }
-
-    public static BroadcastingServerBean getInstance() {
-        if (SERVER_BEAN == null) {
-            SERVER_BEAN = new BroadcastingServerBean();
-        }
-        return SERVER_BEAN;
-    }
-
+public class ServerSimulation implements IServerSimulation {
     @Override
     public void start(final String[] args) {
         try {

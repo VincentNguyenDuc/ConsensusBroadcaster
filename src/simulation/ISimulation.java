@@ -1,6 +1,6 @@
-package src.bean;
+package src.simulation;
 
-public interface IBroadcastingBean {
+public interface ISimulation {
 
     void start(String[] args);
 
