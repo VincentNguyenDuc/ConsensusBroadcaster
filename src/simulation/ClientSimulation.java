@@ -1,5 +1,7 @@
-package src.bean;
+package src.simulation;
 
+import src.bean.BeanFactory;
+import src.bean.ConsensusClientBean;
 import src.mvc.model.IModel;
 import src.remote.client.IRemoteRmiClient;
 import src.remote.client.RemoteRmiClient;
@@ -12,15 +14,9 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 
-public class BroadcastingClientBean implements IBroadcastingBean {
+public class ClientSimulation implements IClientSimulation {
 
-    protected static BroadcastingClientBean CLIENT_BEAN;
     protected IModel model;
-    private IRemoteRmiServer serverProxy;
-    private IRemoteRmiClient clientProxy;
-
-    protected BroadcastingClientBean() {
-    }
 
     public void start(final String[] args) {
         try {
@@ -36,24 +32,22 @@ public class BroadcastingClientBean implements IBroadcastingBean {
         final int rmiRegistryPort = ArgsProcessor.getRmiRegistryPort(args);
         final String rmiServerName = ArgsProcessor.getServerName(args);
         final Registry rmiRegistry = LocateRegistry.getRegistry(rmiRegistryHost, rmiRegistryPort);
-        this.serverProxy = (IRemoteRmiServer) rmiRegistry.lookup(rmiServerName);
+
+        final IRemoteRmiServer serverProxy = (IRemoteRmiServer) rmiRegistry.lookup(rmiServerName);
 
         // Initialize and export client proxy
-        this.clientProxy = new RemoteRmiClient();
-        UnicastRemoteObject.exportObject(this.clientProxy, 0);
+        final IRemoteRmiClient clientProxy = new RemoteRmiClient();
+        UnicastRemoteObject.exportObject(clientProxy, 0);
 
         // Register client proxy to server
-        this.serverProxy.registerRmiClient(this.clientProxy);
+        serverProxy.registerRmiClient(clientProxy);
+
+        ConsensusClientBean clientBean = BeanFactory.getClientBean();
+        clientBean.setClientProxy(clientProxy);
+        clientBean.setServerProxy(serverProxy);
     }
 
-    public IRemoteRmiServer getServerProxy() {
-        return this.serverProxy;
-    }
-
-    public IRemoteRmiClient getClientProxy() {
-        return this.clientProxy;
-    }
-
+    @Override
     public IModel getModel() {
         return this.model;
     }
