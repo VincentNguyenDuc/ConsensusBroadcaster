@@ -1,7 +1,7 @@
-package src.simulations.counter;
+package src.examples.counter;
 
 import src.broadcaster.factory.BeanFactory;
-import src.simulations.counter.bean.CounterBroadcastingClientBean;
+import src.examples.counter.bean.CounterBroadcastingClientBean;
 
 public class CounterClientLauncher {
     public static void main(final String[] args) throws RuntimeException {

@@ -11,12 +11,15 @@ import java.rmi.server.UnicastRemoteObject;
 
 public class BroadcastingServerBean implements IBroadcastingBean {
 
-    private static final BroadcastingServerBean SERVER_BEAN = new BroadcastingServerBean();
+    protected static BroadcastingServerBean SERVER_BEAN;
 
     protected BroadcastingServerBean() {
     }
 
     public static BroadcastingServerBean getInstance() {
+        if (SERVER_BEAN == null) {
+            SERVER_BEAN = new BroadcastingServerBean();
+        }
         return SERVER_BEAN;
     }
 

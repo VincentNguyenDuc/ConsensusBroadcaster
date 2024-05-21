@@ -1,4 +1,4 @@
-package src.simulations.counter;
+package src.examples.counter;
 
 import src.broadcaster.bean.BroadcastingServerBean;
 import src.broadcaster.factory.BeanFactory;

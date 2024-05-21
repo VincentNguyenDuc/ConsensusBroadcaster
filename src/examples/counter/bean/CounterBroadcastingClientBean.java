@@ -1,35 +1,38 @@
-package src.simulations.echo.bean;
+package src.examples.counter.bean;
 
 import src.broadcaster.bean.BroadcastingClientBean;
 import src.broadcaster.mvc.controller.Controller;
 import src.broadcaster.mvc.controller.IController;
 import src.broadcaster.mvc.view.IView;
-import src.broadcaster.mvc.view.View;
 import src.broadcaster.remote.client.ClientOutCoupler;
-import src.simulations.echo.mvc.EchoModel;
+import src.examples.counter.mvc.CounterModel;
+import src.examples.counter.mvc.CounterView;
 
 import java.beans.PropertyChangeListener;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
 
-public class EchoBroadcastingClientBean extends BroadcastingClientBean {
-    protected EchoBroadcastingClientBean() {
+public class CounterBroadcastingClientBean extends BroadcastingClientBean {
+    protected CounterBroadcastingClientBean() {
     }
 
     public static BroadcastingClientBean getInstance() {
         if (CLIENT_BEAN == null) {
-            CLIENT_BEAN = new EchoBroadcastingClientBean();
+            CLIENT_BEAN = new CounterBroadcastingClientBean();
         }
         return CLIENT_BEAN;
     }
 
     @Override
-    public void start(final String[] args) {
-        super.start(args);
-        this.model = new EchoModel();
+    public void init(final String[] args) throws NotBoundException, RemoteException {
+        super.init(args);
+        this.model = new CounterModel();
+
         // Instantiate the view
-        final IView view = new View();
+        final IView view = new CounterView();
         final PropertyChangeListener outCoupler = new ClientOutCoupler();
 
-        // Make the view an observable of the model
+        // Add listeners to model
         try {
             this.model.addPropertyChangeListener(view);
             this.model.addPropertyChangeListener(outCoupler);
@@ -38,7 +41,7 @@ public class EchoBroadcastingClientBean extends BroadcastingClientBean {
         }
 
         // Instantiate the controller
-        final IController controller = new Controller(model);
+        final IController controller = new Controller(this.model);
         controller.processCommands();
     }
 }
