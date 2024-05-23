@@ -1,6 +1,8 @@
 package src.remote.server;
 
 import src.remote.client.IRemoteRmiClient;
+import src.utils.ConsensusAlgorithm;
+import src.utils.IpcMechanism;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
@@ -10,5 +12,9 @@ public interface IRemoteRmiServer extends Remote {
 
     void unregisterRmiClient(IRemoteRmiClient aRmiClient) throws RemoteException;
 
-    void broadcast(IRemoteRmiClient proposer, String aCommand) throws RemoteException;
+    void broadcastCommand(IRemoteRmiClient proposer, String aCommand) throws RemoteException;
+
+    void broadcastIpcMechanism(IRemoteRmiClient proposer, IpcMechanism mechanism) throws RemoteException;
+
+    void broadcastConsensusAlgorithm(IRemoteRmiClient proposer, ConsensusAlgorithm algorithm) throws RemoteException;
 }

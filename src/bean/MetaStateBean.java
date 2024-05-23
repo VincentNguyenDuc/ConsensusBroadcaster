@@ -5,7 +5,7 @@ import src.utils.IpcMechanism;
 
 public abstract class MetaStateBean {
     private IpcMechanism ipcMechanism = IpcMechanism.RMI;
-    private ConsensusAlgorithm consensusAlgorithm = ConsensusAlgorithm.NON_ATOMIC;
+    private ConsensusAlgorithm consensusAlgorithm = ConsensusAlgorithm.NON_CONSENSUS;
 
     public IpcMechanism getIpcMechanism() {
         return this.ipcMechanism;

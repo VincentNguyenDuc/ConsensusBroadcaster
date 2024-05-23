@@ -8,6 +8,7 @@ public class CounterModel extends Model implements ICounter {
 
     @Override
     public void evaluateCommand(final String aCommand) {
+        super.evaluateCommand(aCommand);
         if (INCREMENT_COMMAND.equals(aCommand)) {
             this.increment();
         }

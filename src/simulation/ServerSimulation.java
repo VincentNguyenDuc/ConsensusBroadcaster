@@ -9,7 +9,7 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 
-public class ServerSimulation implements IServerSimulation {
+public class ServerSimulation extends BaseSimulation {
     @Override
     public void start(final String[] args) {
         try {

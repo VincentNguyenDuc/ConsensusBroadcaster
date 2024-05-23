@@ -1,11 +1,11 @@
 package src.bean;
 
-import src.simulation.IServerSimulation;
+import src.simulation.ISimulation;
 
-public class ConsensusServerBean extends MetaStateBean {
+public class ConsensusServerBean implements ISimulationBean {
 
     protected static ConsensusServerBean SERVER_BEAN;
-    private IServerSimulation serverSimulation;
+    private ISimulation serverSimulation;
 
     protected ConsensusServerBean() {
     }
@@ -17,11 +17,11 @@ public class ConsensusServerBean extends MetaStateBean {
         return SERVER_BEAN;
     }
 
-    public IServerSimulation getServerSimulation() {
+    public ISimulation getSimulation() {
         return this.serverSimulation;
     }
 
-    public void setServerSimulation(final IServerSimulation aServerSimulation) {
-        this.serverSimulation = aServerSimulation;
+    public void setSimulation(final ISimulation aSimulation) {
+        this.serverSimulation = aSimulation;
     }
 }
