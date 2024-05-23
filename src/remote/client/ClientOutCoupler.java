@@ -30,7 +30,6 @@ public class ClientOutCoupler implements PropertyChangeListener {
             }
             case Tracer.IPC_MECHANISM_PROPERTY -> {
                 final IpcMechanism mechanism = (IpcMechanism) evt.getNewValue();
-                // TODO: broadcast ipc mechanism
                 try {
                     serverProxy.broadcastIpcMechanism(proposerClient, mechanism);
                 } catch (final RemoteException e) {
@@ -38,7 +37,6 @@ public class ClientOutCoupler implements PropertyChangeListener {
                 }
             }
             case Tracer.CONSENSUS_ALGORITHM_PROPERTY -> {
-                // TODO: broadcast consensus algorithm
                 final ConsensusAlgorithm algorithm = (ConsensusAlgorithm) evt.getNewValue();
                 try {
                     serverProxy.broadcastConsensusAlgorithm(proposerClient, algorithm);

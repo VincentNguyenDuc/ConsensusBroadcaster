@@ -18,17 +18,17 @@ public abstract class Model implements IModel {
 
     @Override
     public void evaluateCommand(final String aCommand) {
-        // TODO: Parse commands instead of switch-case
-        switch (aCommand) {
-            case "i nio": this.setIpcMechanism(IpcMechanism.NIO);
-            case "i rmi": this.setIpcMechanism(IpcMechanism.RMI);
+
+        for (final IpcMechanism mechanism : IpcMechanism.values()) {
+            if ((Tracer.IPC_MECHANISM_COMMAND_PREFIX + mechanism.toString().toLowerCase()).equals(aCommand)) {
+                this.setIpcMechanism(mechanism);
+            }
         }
 
-        switch (aCommand) {
-            case "a non_consensus": this.setConsensusAlgorithm(ConsensusAlgorithm.NON_CONSENSUS);
-            case "a atomic": this.setConsensusAlgorithm(ConsensusAlgorithm.ATOMIC);
-            case "a two_phase": this.setConsensusAlgorithm(ConsensusAlgorithm.TWO_PHASE);
-            case "a paxos": this.setConsensusAlgorithm(ConsensusAlgorithm.PAXOS);
+        for (final ConsensusAlgorithm algorithm : ConsensusAlgorithm.values()) {
+            if ((Tracer.CONSENSUS_ALGORITHM_COMMAND_PREFIX + algorithm.toString().toLowerCase()).equals(aCommand)) {
+                this.setConsensusAlgorithm(algorithm);
+            }
         }
     }
 
@@ -57,23 +57,13 @@ public abstract class Model implements IModel {
     }
 
     public void setConsensusAlgorithm(final ConsensusAlgorithm aConsensusAlgorithm) {
-        final ConsensusAlgorithm oldAlgorithm = BeanFactory.getClientBean().getConsensusAlgorithm();
-        try {
-            BeanFactory.getClientBean().setConsensusAlgorithm(aConsensusAlgorithm);
-            this.propertyChangeSupport.firePropertyChange(Tracer.CONSENSUS_ALGORITHM_PROPERTY, oldAlgorithm, aConsensusAlgorithm);
-        } catch (final Exception e) {
-            throw new RuntimeException(e);
-        }
+        this.propertyChangeSupport.firePropertyChange(Tracer.CONSENSUS_ALGORITHM_PROPERTY, null, aConsensusAlgorithm);
+        BeanFactory.getClientBean().setConsensusAlgorithm(aConsensusAlgorithm);
     }
 
     public void setIpcMechanism(final IpcMechanism anIpcMechanism) {
-        final IpcMechanism oldMechanism = BeanFactory.getClientBean().getIpcMechanism();
-        try {
-            BeanFactory.getClientBean().setIpcMechanism(anIpcMechanism);
-            this.propertyChangeSupport.firePropertyChange(Tracer.IPC_MECHANISM_PROPERTY, oldMechanism, anIpcMechanism);
-        } catch (final Exception e) {
-            throw new RuntimeException(e);
-        }
+        this.propertyChangeSupport.firePropertyChange(Tracer.IPC_MECHANISM_PROPERTY, null, anIpcMechanism);
+        BeanFactory.getClientBean().setIpcMechanism(anIpcMechanism);
     }
 
     @Override

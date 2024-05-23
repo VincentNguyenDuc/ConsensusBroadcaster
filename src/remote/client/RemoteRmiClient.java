@@ -20,12 +20,10 @@ public class RemoteRmiClient implements IRemoteRmiClient {
     @Override
     public void receiveIpcMechanism(final IpcMechanism mechanism) throws RemoteException {
         BeanFactory.getClientBean().setIpcMechanism(mechanism);
-        System.out.println(mechanism);
     }
 
     @Override
     public void receiveConsensusAlgorithm(final ConsensusAlgorithm algorithm) throws RemoteException {
         BeanFactory.getClientBean().setConsensusAlgorithm(algorithm);
-        System.out.println(algorithm);
     }
 }
