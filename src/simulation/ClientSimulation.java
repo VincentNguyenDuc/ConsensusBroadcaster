@@ -2,7 +2,6 @@ package src.simulation;
 
 import src.bean.BeanFactory;
 import src.bean.ConsensusClientBean;
-import src.mvc.model.IModel;
 import src.remote.client.IRemoteRmiClient;
 import src.remote.client.RemoteRmiClient;
 import src.remote.server.IRemoteRmiServer;
@@ -14,9 +13,8 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 
-public class ClientSimulation implements IClientSimulation {
+public class ClientSimulation extends BaseSimulation {
 
-    protected IModel model;
 
     public void start(final String[] args) {
         try {
@@ -42,13 +40,9 @@ public class ClientSimulation implements IClientSimulation {
         // Register client proxy to server
         serverProxy.registerRmiClient(clientProxy);
 
-        ConsensusClientBean clientBean = BeanFactory.getClientBean();
+        final ConsensusClientBean clientBean = BeanFactory.getClientBean();
         clientBean.setClientProxy(clientProxy);
         clientBean.setServerProxy(serverProxy);
     }
 
-    @Override
-    public IModel getModel() {
-        return this.model;
-    }
 }

@@ -1,10 +1,10 @@
-package examples.counter.bean;
+package examples.counter.simulation;
 
 import examples.counter.mvc.CounterModel;
-import examples.counter.mvc.CounterView;
 import src.mvc.controller.Controller;
 import src.mvc.controller.IController;
 import src.mvc.view.IView;
+import src.mvc.view.View;
 import src.remote.client.ClientOutCoupler;
 import src.simulation.ClientSimulation;
 
@@ -17,7 +17,7 @@ public class CounterClientSimulation extends ClientSimulation {
     }
 
     @Override
-    public void start(String[] args) {
+    public void start(final String[] args) {
         super.start(args);
     }
 
@@ -27,7 +27,7 @@ public class CounterClientSimulation extends ClientSimulation {
         this.model = new CounterModel();
 
         // Instantiate the view
-        final IView view = new CounterView();
+        final IView view = new View();
         final PropertyChangeListener outCoupler = new ClientOutCoupler();
 
         // Add listeners to model

@@ -1,7 +1,7 @@
 package src.utils;
 
 public enum ConsensusAlgorithm {
-    NON_ATOMIC,
+    NON_CONSENSUS,
     ATOMIC,
     TWO_PHASE,
     PAXOS
