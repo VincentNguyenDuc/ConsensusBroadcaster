@@ -1,7 +1,7 @@
 package src.simulation;
 
-import src.remote.server.IRemoteRmiServer;
-import src.remote.server.RemoteRmiServer;
+import src.remote.server.IRemoteBroadcastingServer;
+import src.remote.server.NonConsensusRemoteServer;
 import src.utils.ArgsProcessor;
 
 import java.rmi.RemoteException;
@@ -25,7 +25,7 @@ public class ServerSimulation extends BaseSimulation {
         final int rmiRegistryPort = ArgsProcessor.getRmiRegistryPort(args);
         final String rmiServerName = ArgsProcessor.getServerName(args);
         final Registry rmiRegistry = LocateRegistry.getRegistry(rmiRegistryHost, rmiRegistryPort);
-        final IRemoteRmiServer remoteServer = new RemoteRmiServer();
+        final IRemoteBroadcastingServer remoteServer = new NonConsensusRemoteServer();
         UnicastRemoteObject.exportObject(remoteServer, 0);
         rmiRegistry.rebind(rmiServerName, remoteServer);
     }

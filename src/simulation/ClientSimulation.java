@@ -4,7 +4,7 @@ import src.bean.BeanFactory;
 import src.bean.ConsensusClientBean;
 import src.remote.client.IRemoteRmiClient;
 import src.remote.client.RemoteRmiClient;
-import src.remote.server.IRemoteRmiServer;
+import src.remote.server.IRemoteBroadcastingServer;
 import src.utils.ArgsProcessor;
 
 import java.rmi.NotBoundException;
@@ -31,7 +31,7 @@ public class ClientSimulation extends BaseSimulation {
         final String rmiServerName = ArgsProcessor.getServerName(args);
         final Registry rmiRegistry = LocateRegistry.getRegistry(rmiRegistryHost, rmiRegistryPort);
 
-        final IRemoteRmiServer serverProxy = (IRemoteRmiServer) rmiRegistry.lookup(rmiServerName);
+        final IRemoteBroadcastingServer serverProxy = (IRemoteBroadcastingServer) rmiRegistry.lookup(rmiServerName);
 
         // Initialize and export client proxy
         final IRemoteRmiClient clientProxy = new RemoteRmiClient();

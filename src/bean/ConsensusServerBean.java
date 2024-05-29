@@ -2,7 +2,7 @@ package src.bean;
 
 import src.simulation.ISimulation;
 
-public class ConsensusServerBean implements ISimulationBean {
+public class ConsensusServerBean extends MetaStateBean implements IConsensusBean {
 
     protected static ConsensusServerBean SERVER_BEAN;
     private ISimulation serverSimulation;

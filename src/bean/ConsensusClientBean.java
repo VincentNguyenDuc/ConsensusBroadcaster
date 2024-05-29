@@ -1,13 +1,13 @@
 package src.bean;
 
 import src.remote.client.IRemoteRmiClient;
-import src.remote.server.IRemoteRmiServer;
+import src.remote.server.IRemoteBroadcastingServer;
 import src.simulation.ISimulation;
 
-public class ConsensusClientBean extends MetaStateBean implements ISimulationBean {
+public class ConsensusClientBean extends MetaStateBean implements IConsensusBean {
 
     protected static ConsensusClientBean CLIENT_BEAN = new ConsensusClientBean();
-    private IRemoteRmiServer serverProxy;
+    private IRemoteBroadcastingServer serverProxy;
     private IRemoteRmiClient clientProxy;
     private ISimulation clientSimulation;
 
@@ -18,11 +18,11 @@ public class ConsensusClientBean extends MetaStateBean implements ISimulationBea
         return CLIENT_BEAN;
     }
 
-    public IRemoteRmiServer getServerProxy() {
+    public IRemoteBroadcastingServer getServerProxy() {
         return this.serverProxy;
     }
 
-    public void setServerProxy(final IRemoteRmiServer aServerProxy) {
+    public void setServerProxy(final IRemoteBroadcastingServer aServerProxy) {
         this.serverProxy = aServerProxy;
     }
 

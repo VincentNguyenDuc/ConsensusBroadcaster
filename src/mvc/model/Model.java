@@ -22,12 +22,14 @@ public abstract class Model implements IModel {
         for (final IpcMechanism mechanism : IpcMechanism.values()) {
             if ((Tracer.IPC_MECHANISM_COMMAND_PREFIX + mechanism.toString().toLowerCase()).equals(aCommand)) {
                 this.setIpcMechanism(mechanism);
+                return;
             }
         }
 
         for (final ConsensusAlgorithm algorithm : ConsensusAlgorithm.values()) {
             if ((Tracer.CONSENSUS_ALGORITHM_COMMAND_PREFIX + algorithm.toString().toLowerCase()).equals(aCommand)) {
                 this.setConsensusAlgorithm(algorithm);
+                return;
             }
         }
     }
@@ -83,9 +85,7 @@ public abstract class Model implements IModel {
     public void terminate() {
         try {
             final ConsensusClientBean clientBean = BeanFactory.getClientBean();
-            clientBean.getServerProxy().unregisterRmiClient(
-                    clientBean.getClientProxy()
-            );
+            clientBean.getServerProxy().unregisterRmiClient(clientBean.getClientProxy());
         } catch (final RemoteException e) {
             throw new RuntimeException(e);
         }
