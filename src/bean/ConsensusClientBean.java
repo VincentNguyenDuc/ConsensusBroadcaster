@@ -1,7 +1,7 @@
 package src.bean;
 
 import src.remote.client.IRemoteRmiClient;
-import src.remote.server.IRemoteBroadcastingServer;
+import src.remote.server.algorithm.IRemoteBroadcastingServer;
 import src.simulation.ISimulation;
 
 public class ConsensusClientBean extends MetaStateBean implements IConsensusBean {

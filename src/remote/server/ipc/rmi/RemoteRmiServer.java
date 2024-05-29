@@ -1,4 +1,4 @@
-package src.remote.server;
+package src.remote.server.ipc.rmi;
 
 import src.remote.client.IRemoteRmiClient;
 
@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RemoteRmiServer implements IRemoteRmiServer {
-    List<IRemoteRmiClient> rmiClients = new ArrayList<IRemoteRmiClient>();
+    final protected List<IRemoteRmiClient> rmiClients = new ArrayList<IRemoteRmiClient>();
 
     @Override
     public void registerRmiClient(final IRemoteRmiClient aRmiClient) {
@@ -19,5 +19,10 @@ public class RemoteRmiServer implements IRemoteRmiServer {
     public void unregisterRmiClient(final IRemoteRmiClient aRmiClient) throws RemoteException {
         this.rmiClients.removeIf(aRmiClient::equals);
         System.out.println("Unregistered: " + aRmiClient);
+    }
+
+    @Override
+    public List<IRemoteRmiClient> getClients() throws RemoteException {
+        return this.rmiClients;
     }
 }

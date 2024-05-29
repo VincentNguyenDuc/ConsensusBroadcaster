@@ -43,7 +43,7 @@ public abstract class Model implements IModel {
     public void setCommand(final String newCommand) {
         this.command = newCommand;
         this.propertyChangeSupport.firePropertyChange(Tracer.COMMAND_PROPERTY, null, newCommand);
-        this.evaluateCommand(newCommand);
+//        this.evaluateCommand(newCommand);
     }
 
     @Override

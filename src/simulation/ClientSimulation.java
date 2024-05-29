@@ -4,7 +4,7 @@ import src.bean.BeanFactory;
 import src.bean.ConsensusClientBean;
 import src.remote.client.IRemoteRmiClient;
 import src.remote.client.RemoteRmiClient;
-import src.remote.server.IRemoteBroadcastingServer;
+import src.remote.server.algorithm.IRemoteBroadcastingServer;
 import src.utils.ArgsProcessor;
 
 import java.rmi.NotBoundException;

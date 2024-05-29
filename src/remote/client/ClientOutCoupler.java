@@ -2,18 +2,17 @@ package src.remote.client;
 
 import src.bean.BeanFactory;
 import src.bean.ConsensusClientBean;
-import src.remote.server.IRemoteBroadcastingServer;
-import src.utils.ConsensusAlgorithm;
-import src.utils.IpcMechanism;
+import src.remote.server.algorithm.IRemoteBroadcastingServer;
 import src.utils.Tracer;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.rmi.RemoteException;
 
 public class ClientOutCoupler implements PropertyChangeListener {
     @Override
     public void propertyChange(final PropertyChangeEvent evt) {
+
+        if (!Tracer.COMMAND_PROPERTY.equals(evt.getPropertyName())) return;
 
         final ConsensusClientBean clientBean = BeanFactory.getClientBean();
         final IRemoteBroadcastingServer serverProxy = clientBean.getServerProxy();

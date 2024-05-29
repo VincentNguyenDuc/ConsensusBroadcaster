@@ -1,5 +1,6 @@
 package src.utils;
 
+
 public class Tracer {
     public static final String COMMAND_PROPERTY = "command";
     public static final String RESULT_PROPERTY = "result";
@@ -9,4 +10,12 @@ public class Tracer {
     public static final String TERMINATE = "terminate";
     public static final String IPC_MECHANISM_COMMAND_PREFIX = "i ";
     public static final String CONSENSUS_ALGORITHM_COMMAND_PREFIX = "a ";
+
+    public static void receiveCommand(final String from, final String to, final String aCommand) {
+        System.out.println(to + ": receive \"" + aCommand + "\" from: " + from);
+    }
+
+    public static void sendCommand(final String from, final String to, final String aCommand) {
+        System.out.println(from + ": send \"" + aCommand + "\" to: " + to);
+    }
 }
