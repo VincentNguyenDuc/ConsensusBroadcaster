@@ -1,4 +1,4 @@
-package examples.counter;
+package examples.counter.launcher;
 
 import src.utils.ArgsProcessor;
 

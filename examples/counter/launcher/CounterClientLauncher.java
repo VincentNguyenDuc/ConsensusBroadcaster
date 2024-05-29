@@ -1,4 +1,4 @@
-package examples.counter;
+package examples.counter.launcher;
 
 import examples.counter.simulation.CounterClientSimulation;
 import src.bean.BeanFactory;
