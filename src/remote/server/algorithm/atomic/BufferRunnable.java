@@ -1,5 +1,6 @@
 package src.remote.server.algorithm.atomic;
 
+import src.bean.BeanFactory;
 import src.utils.Tracer;
 
 import java.rmi.RemoteException;
@@ -16,8 +17,8 @@ public class BufferRunnable implements Runnable {
     public void run() {
         while (true) {
             try {
-                final String command = this.remoteServer.commandsBoundedBuffer.take();
-                this.remoteServer.getClients().forEach(client -> {
+                final String command = this.remoteServer.getBuffer().take();
+                BeanFactory.getServerBean().getClients().forEach(client -> {
                     try {
                         Tracer.sendCommand(this.toString(), client.toString(), command);
                         client.receiveCommand(this.toString(), command);

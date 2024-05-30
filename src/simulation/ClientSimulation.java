@@ -5,7 +5,8 @@ import src.bean.ConsensusClientBean;
 import src.remote.client.IRemoteRmiClient;
 import src.remote.client.RemoteRmiClient;
 import src.remote.server.algorithm.IRemoteBroadcastingServer;
-import src.utils.ArgsProcessor;
+import src.utils.ArgsParser;
+import src.utils.ConsensusAlgorithm;
 
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
@@ -26,23 +27,26 @@ public class ClientSimulation extends BaseSimulation {
 
     public void init(final String[] args) throws RemoteException, NotBoundException {
         // Look up server proxy from RMI registry
-        final String rmiRegistryHost = ArgsProcessor.getRmiRegistryHost(args);
-        final int rmiRegistryPort = ArgsProcessor.getRmiRegistryPort(args);
-        final String rmiServerName = ArgsProcessor.getServerName(args);
+        final String rmiRegistryHost = ArgsParser.getRmiRegistryHost(args);
+        final int rmiRegistryPort = ArgsParser.getRmiRegistryPort(args);
+        final String atomicServerName = ArgsParser.getAtomicServerName(args);
+        final String nonConsensusServerName = ArgsParser.getNonConsensusServerName(args);
         final Registry rmiRegistry = LocateRegistry.getRegistry(rmiRegistryHost, rmiRegistryPort);
 
-        final IRemoteBroadcastingServer serverProxy = (IRemoteBroadcastingServer) rmiRegistry.lookup(rmiServerName);
+        final IRemoteBroadcastingServer atomicServerProxy = (IRemoteBroadcastingServer) rmiRegistry.lookup(atomicServerName);
+        final IRemoteBroadcastingServer nonConsensusServerProxy = (IRemoteBroadcastingServer) rmiRegistry.lookup(nonConsensusServerName);
 
         // Initialize and export client proxy
         final IRemoteRmiClient clientProxy = new RemoteRmiClient();
         UnicastRemoteObject.exportObject(clientProxy, 0);
 
         // Register client proxy to server
-        serverProxy.registerRmiClient(clientProxy);
+        atomicServerProxy.registerRmiClient(clientProxy);
 
         final ConsensusClientBean clientBean = BeanFactory.getClientBean();
         clientBean.setClientProxy(clientProxy);
-        clientBean.setServerProxy(serverProxy);
+        clientBean.setServerProxy(ConsensusAlgorithm.ATOMIC, atomicServerProxy);
+        clientBean.setServerProxy(ConsensusAlgorithm.NON_CONSENSUS, nonConsensusServerProxy);
     }
 
 }

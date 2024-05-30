@@ -43,7 +43,9 @@ public abstract class Model implements IModel {
     public void setCommand(final String newCommand) {
         this.command = newCommand;
         this.propertyChangeSupport.firePropertyChange(Tracer.COMMAND_PROPERTY, null, newCommand);
-//        this.evaluateCommand(newCommand);
+        if (BeanFactory.getClientBean().getLocalProcessing()) {
+            this.evaluateCommand(newCommand);
+        }
     }
 
     @Override
@@ -61,11 +63,20 @@ public abstract class Model implements IModel {
     public void setConsensusAlgorithm(final ConsensusAlgorithm aConsensusAlgorithm) {
         this.propertyChangeSupport.firePropertyChange(Tracer.CONSENSUS_ALGORITHM_PROPERTY, null, aConsensusAlgorithm);
         BeanFactory.getClientBean().setConsensusAlgorithm(aConsensusAlgorithm);
+        switch (aConsensusAlgorithm) {
+            case NON_CONSENSUS -> this.setLocalProcessing(true);
+            case ATOMIC -> this.setLocalProcessing(false);
+        }
     }
 
     public void setIpcMechanism(final IpcMechanism anIpcMechanism) {
         this.propertyChangeSupport.firePropertyChange(Tracer.IPC_MECHANISM_PROPERTY, null, anIpcMechanism);
         BeanFactory.getClientBean().setIpcMechanism(anIpcMechanism);
+    }
+
+    public void setLocalProcessing(final boolean newValue) {
+        this.propertyChangeSupport.firePropertyChange(Tracer.LOCAL_PROCESSING_PROPERTY, null, newValue);
+        BeanFactory.getClientBean().setLocalProcessing(newValue);
     }
 
     @Override
