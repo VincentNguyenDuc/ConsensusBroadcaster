@@ -1,11 +1,15 @@
 package src.bean;
 
+import src.remote.client.IRemoteRmiClient;
 import src.simulation.ISimulation;
 
-public class ConsensusServerBean extends MetaStateBean implements IConsensusBean {
+import java.util.ArrayList;
+
+public class ConsensusServerBean extends MetaStateBean implements IConsensusServerBean {
 
     protected static ConsensusServerBean SERVER_BEAN;
     private ISimulation serverSimulation;
+    private final ArrayList<IRemoteRmiClient> clients = new ArrayList<IRemoteRmiClient>();
 
     protected ConsensusServerBean() {
     }
@@ -23,5 +27,10 @@ public class ConsensusServerBean extends MetaStateBean implements IConsensusBean
 
     public void setSimulation(final ISimulation aSimulation) {
         this.serverSimulation = aSimulation;
+    }
+
+    @Override
+    public ArrayList<IRemoteRmiClient> getClients() {
+        return this.clients;
     }
 }

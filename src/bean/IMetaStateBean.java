@@ -11,4 +11,8 @@ public interface IMetaStateBean {
     ConsensusAlgorithm getConsensusAlgorithm();
 
     void setConsensusAlgorithm(final ConsensusAlgorithm aConsensusAlgorithm);
+
+    boolean getLocalProcessing();
+
+    void setLocalProcessing(final boolean newValue);
 }

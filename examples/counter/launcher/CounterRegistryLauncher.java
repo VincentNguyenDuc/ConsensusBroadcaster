@@ -1,6 +1,6 @@
 package examples.counter.launcher;
 
-import src.utils.ArgsProcessor;
+import src.utils.ArgsParser;
 
 import java.rmi.registry.LocateRegistry;
 import java.util.Scanner;
@@ -13,7 +13,7 @@ public class CounterRegistryLauncher {
             System.setProperty("java.rmi.server.hostname", "0.0.0.0");
 
             // Create the RMI registry
-            final int port = ArgsProcessor.getRmiRegistryPort(args);
+            final int port = ArgsParser.getRmiRegistryPort(args);
             LocateRegistry.createRegistry(port);
 
             System.out.println("RMI Registry is running at port: " + port);

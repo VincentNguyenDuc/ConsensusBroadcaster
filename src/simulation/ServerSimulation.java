@@ -2,7 +2,8 @@ package src.simulation;
 
 import src.remote.server.algorithm.IRemoteBroadcastingServer;
 import src.remote.server.algorithm.atomic.AtomicRemoteServer;
-import src.utils.ArgsProcessor;
+import src.remote.server.algorithm.non_consensus.NonConsensusRemoteServer;
+import src.utils.ArgsParser;
 
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
@@ -21,12 +22,16 @@ public class ServerSimulation extends BaseSimulation {
 
     @Override
     public void init(final String[] args) throws RemoteException {
-        final String rmiRegistryHost = ArgsProcessor.getRmiRegistryHost(args);
-        final int rmiRegistryPort = ArgsProcessor.getRmiRegistryPort(args);
-        final String rmiServerName = ArgsProcessor.getServerName(args);
+        final String rmiRegistryHost = ArgsParser.getRmiRegistryHost(args);
+        final int rmiRegistryPort = ArgsParser.getRmiRegistryPort(args);
+        final String atomicServer = ArgsParser.getAtomicServerName(args);
+        final String nonConsensusServer = ArgsParser.getNonConsensusServerName(args);
         final Registry rmiRegistry = LocateRegistry.getRegistry(rmiRegistryHost, rmiRegistryPort);
-        final IRemoteBroadcastingServer remoteServer = new AtomicRemoteServer();
-        UnicastRemoteObject.exportObject(remoteServer, 0);
-        rmiRegistry.rebind(rmiServerName, remoteServer);
+        final IRemoteBroadcastingServer atomicRemoteServer = new AtomicRemoteServer();
+        final IRemoteBroadcastingServer nonConsensusRemoteServer = new NonConsensusRemoteServer();
+        UnicastRemoteObject.exportObject(atomicRemoteServer, 0);
+        UnicastRemoteObject.exportObject(nonConsensusRemoteServer, 0);
+        rmiRegistry.rebind(atomicServer, atomicRemoteServer);
+        rmiRegistry.rebind(nonConsensusServer, nonConsensusRemoteServer);
     }
 }

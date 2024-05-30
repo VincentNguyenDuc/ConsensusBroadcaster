@@ -3,11 +3,15 @@ package src.bean;
 import src.remote.client.IRemoteRmiClient;
 import src.remote.server.algorithm.IRemoteBroadcastingServer;
 import src.simulation.ISimulation;
+import src.utils.ConsensusAlgorithm;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class ConsensusClientBean extends MetaStateBean implements IConsensusBean {
 
     protected static ConsensusClientBean CLIENT_BEAN = new ConsensusClientBean();
-    private IRemoteBroadcastingServer serverProxy;
+    private final Map<ConsensusAlgorithm, IRemoteBroadcastingServer> serverProxyMap = new HashMap<>();
     private IRemoteRmiClient clientProxy;
     private ISimulation clientSimulation;
 
@@ -19,11 +23,11 @@ public class ConsensusClientBean extends MetaStateBean implements IConsensusBean
     }
 
     public IRemoteBroadcastingServer getServerProxy() {
-        return this.serverProxy;
+        return this.serverProxyMap.get(this.getConsensusAlgorithm());
     }
 
-    public void setServerProxy(final IRemoteBroadcastingServer aServerProxy) {
-        this.serverProxy = aServerProxy;
+    public void setServerProxy(final ConsensusAlgorithm algorithm, final IRemoteBroadcastingServer aServerProxy) {
+        this.serverProxyMap.put(algorithm, aServerProxy);
     }
 
     public IRemoteRmiClient getClientProxy() {
