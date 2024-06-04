@@ -64,8 +64,17 @@ public abstract class Model implements IModel {
         this.propertyChangeSupport.firePropertyChange(Tracer.CONSENSUS_ALGORITHM_PROPERTY, null, aConsensusAlgorithm);
         BeanFactory.getClientBean().setConsensusAlgorithm(aConsensusAlgorithm);
         switch (aConsensusAlgorithm) {
-            case NON_CONSENSUS -> this.setLocalProcessing(true);
-            case ATOMIC -> this.setLocalProcessing(false);
+            case NON_CONSENSUS: {
+                this.setLocalProcessing(true);
+                break;
+            }
+            case ATOMIC: {
+                this.setLocalProcessing(false);
+                break;
+            }
+            default: {
+                throw new IllegalArgumentException("Unexpected value: " + aConsensusAlgorithm);
+            }
         }
     }
 

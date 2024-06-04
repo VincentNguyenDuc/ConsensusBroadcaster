@@ -18,9 +18,10 @@ public class CounterRegistryLauncher {
 
             System.out.println("RMI Registry is running at port: " + port);
 
-            // Keep the process alive
-            final Scanner scanner = new Scanner(System.in);
-            scanner.nextLine();
+            try (// Keep the process alive
+            Scanner scanner = new Scanner(System.in)) {
+                scanner.nextLine();
+            }
 
         } catch (final Exception e) {
             throw new RuntimeException(e);
