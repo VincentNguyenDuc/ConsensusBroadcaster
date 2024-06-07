@@ -1,4 +1,4 @@
-package com.jbroadcast.utils;
+package com.jbroadcast.utils.enums;
 
 public enum IpcMechanism {
     RMI,
