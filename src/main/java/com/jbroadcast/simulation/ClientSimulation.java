@@ -17,16 +17,23 @@ import java.rmi.server.UnicastRemoteObject;
 
 public class ClientSimulation extends BaseSimulation {
 
-
-    public void start() {
+    @Override
+    public void start(final String[] args) {
         try {
-            this.init();
+            this.init(args);
         } catch (final Exception e) {
             throw new RuntimeException(e);
         }
     }
 
-    public void init() throws RemoteException, NotBoundException {
+    @Override
+    public void init(final String[] args) throws RemoteException, NotBoundException {
+        try {
+            super.init(args);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
         final ArgsParser argsParser = ParserFactory.getArgsParser();
 
         // Look up server proxy from RMI registry

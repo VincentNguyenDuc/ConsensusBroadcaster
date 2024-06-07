@@ -17,13 +17,13 @@ public class CounterClientSimulation extends ClientSimulation {
     }
 
     @Override
-    public void start() {
-        super.start();
+    public void start(final String[] args) {
+        super.start(args);
     }
 
     @Override
-    public void init() throws NotBoundException, RemoteException {
-        super.init();
+    public void init(final String[] args) throws NotBoundException, RemoteException {
+        super.init(args);
         this.model = new CounterModel();
 
         // Instantiate the view

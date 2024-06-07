@@ -4,9 +4,18 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "Delay",
+            "label": "ClientWait",
             "type": "shell",
             "command": "sleep 1",
+            "group": "none",
+            "presentation": {
+                "reveal": "never"
+            }
+        },
+        {
+            "label": "ServerWait",
+            "type": "shell",
+            "command": "sleep 0.1",
             "group": "none",
             "presentation": {
                 "reveal": "never"

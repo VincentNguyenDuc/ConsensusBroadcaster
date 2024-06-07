@@ -13,16 +13,21 @@ import java.rmi.server.UnicastRemoteObject;
 
 public class ServerSimulation extends BaseSimulation {
     @Override
-    public void start() {
+    public void start(final String[] args) {
         try {
-            this.init();
+            this.init(args);
         } catch (final Exception e) {
             throw new RuntimeException(e);
         }
     }
 
     @Override
-    public void init() throws RemoteException {
+    public void init(final String[] args) throws RemoteException {
+        try {
+            super.init(args);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         final ArgsParser argsParser = ParserFactory.getArgsParser();
 
         final String rmiRegistryHost = argsParser.getRmiRegistryHost();

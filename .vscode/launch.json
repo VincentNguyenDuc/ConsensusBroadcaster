@@ -16,22 +16,41 @@
             "request": "launch",
             "mainClass": "com.examples.counter.launcher.CounterClientLauncher",
             "projectName": "ConsensusBroadcaster",
-            "preLaunchTask": "Delay",
-            "suppressMultipleSessionWarning": true
+            "preLaunchTask": "ClientWait",
+            "suppressMultipleSessionWarning": true,
+            "args": [
+                "--rmi-registry-port",
+                "1000",
+                "--rmi-registry-host",
+                "127.0.0.1"
+            ]
         },
         {
             "type": "java",
             "name": "CounterRegistryLauncher",
             "request": "launch",
             "mainClass": "com.examples.counter.launcher.CounterRegistryLauncher",
-            "projectName": "ConsensusBroadcaster"
+            "projectName": "ConsensusBroadcaster",
+            "args": [
+                "--rmi-registry-port",
+                "1000",
+                "--rmi-registry-host",
+                "127.0.0.1"
+            ]
         },
         {
             "type": "java",
             "name": "CounterServerLauncher",
             "request": "launch",
             "mainClass": "com.examples.counter.launcher.CounterServerLauncher",
-            "projectName": "ConsensusBroadcaster"
+            "projectName": "ConsensusBroadcaster",
+            "preLaunchTask": "ServerWait",
+            "args": [
+                "--rmi-registry-port",
+                "1000",
+                "--rmi-registry-host",
+                "127.0.0.1"
+            ]
         }
     ],
     "compounds": [
@@ -43,7 +62,7 @@
                 "CounterClientLauncher",
                 "CounterClientLauncher"
             ],
-            "stopAll": true,
+            "stopAll": true
         }
     ],
 }

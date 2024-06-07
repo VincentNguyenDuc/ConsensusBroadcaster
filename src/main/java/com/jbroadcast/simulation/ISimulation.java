@@ -4,9 +4,9 @@ import com.jbroadcast.mvc.model.IModel;
 
 public interface ISimulation {
 
-    void start();
+    void start(String[] args);
 
-    void init() throws Exception;
+    void init(String[] args) throws Exception;
 
     IModel getModel();
 }
