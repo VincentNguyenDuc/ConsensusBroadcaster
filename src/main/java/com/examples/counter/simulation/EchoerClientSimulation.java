@@ -12,9 +12,7 @@ import java.beans.PropertyChangeListener;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
-public class CounterClientSimulation extends ClientSimulation {
-    public CounterClientSimulation() {
-    }
+public class EchoerClientSimulation extends ClientSimulation {
 
     @Override
     public void start(final String[] args) {

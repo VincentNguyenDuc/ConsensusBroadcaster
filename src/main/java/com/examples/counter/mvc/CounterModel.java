@@ -2,7 +2,7 @@ package com.examples.counter.mvc;
 
 import com.jbroadcast.mvc.model.Model;
 
-public class CounterModel extends Model implements ICounter {
+public class CounterModel extends Model<Integer> implements ICounter {
 
     public static final String INCREMENT_COMMAND = "increment";
 

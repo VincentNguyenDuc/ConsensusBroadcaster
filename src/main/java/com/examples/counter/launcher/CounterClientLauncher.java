@@ -1,6 +1,6 @@
 package com.examples.counter.launcher;
 
-import com.examples.counter.simulation.CounterClientSimulation;
+import com.examples.counter.simulation.EchoerClientSimulation;
 import com.jbroadcast.bean.BeanFactory;
 import com.jbroadcast.bean.ConsensusClientBean;
 import com.jbroadcast.simulation.ISimulation;
@@ -9,7 +9,7 @@ public class CounterClientLauncher {
     public static void main(final String[] args) throws RuntimeException {
 
         // Initialize simulation
-        final ISimulation counterClientSimulation = new CounterClientSimulation();
+        final ISimulation counterClientSimulation = new EchoerClientSimulation();
 
         // Register simulation to bean
         final ConsensusClientBean clientBean = ConsensusClientBean.getInstance();
