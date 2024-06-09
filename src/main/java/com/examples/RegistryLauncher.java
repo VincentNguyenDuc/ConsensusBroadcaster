@@ -43,5 +43,4 @@ public class RegistryLauncher {
         System.out.println("Registry Host: " + host);
         System.out.println("Registry Port: " + port);
     }
-
 }
