@@ -1,7 +1,7 @@
 package com.jbroadcast.bean;
 
-import com.jbroadcast.utils.ConsensusAlgorithm;
-import com.jbroadcast.utils.IpcMechanism;
+import com.jbroadcast.utils.enums.ConsensusAlgorithm;
+import com.jbroadcast.utils.enums.IpcMechanism;
 
 public abstract class MetaStateBean implements IMetaStateBean {
     private IpcMechanism ipcMechanism = IpcMechanism.RMI;

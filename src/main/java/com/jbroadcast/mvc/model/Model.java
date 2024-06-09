@@ -2,9 +2,9 @@ package com.jbroadcast.mvc.model;
 
 import com.jbroadcast.bean.BeanFactory;
 import com.jbroadcast.bean.ConsensusClientBean;
-import com.jbroadcast.utils.ConsensusAlgorithm;
-import com.jbroadcast.utils.IpcMechanism;
 import com.jbroadcast.utils.Tracer;
+import com.jbroadcast.utils.enums.ConsensusAlgorithm;
+import com.jbroadcast.utils.enums.IpcMechanism;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;

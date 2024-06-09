@@ -1,0 +1,68 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "CounterClientLauncher",
+            "request": "launch",
+            "mainClass": "com.examples.counter.launcher.CounterClientLauncher",
+            "projectName": "ConsensusBroadcaster",
+            "preLaunchTask": "ClientWait",
+            "suppressMultipleSessionWarning": true,
+            "args": [
+                "--rmi-registry-port",
+                "1000",
+                "--rmi-registry-host",
+                "127.0.0.1"
+            ]
+        },
+        {
+            "type": "java",
+            "name": "CounterRegistryLauncher",
+            "request": "launch",
+            "mainClass": "com.examples.counter.launcher.CounterRegistryLauncher",
+            "projectName": "ConsensusBroadcaster",
+            "args": [
+                "--rmi-registry-port",
+                "1000",
+                "--rmi-registry-host",
+                "127.0.0.1"
+            ]
+        },
+        {
+            "type": "java",
+            "name": "CounterServerLauncher",
+            "request": "launch",
+            "mainClass": "com.examples.counter.launcher.CounterServerLauncher",
+            "projectName": "ConsensusBroadcaster",
+            "preLaunchTask": "ServerWait",
+            "args": [
+                "--rmi-registry-port",
+                "1000",
+                "--rmi-registry-host",
+                "127.0.0.1"
+            ]
+        }
+    ],
+    "compounds": [
+        {
+            "name": "Registry/Server/Clients",
+            "configurations": [
+                "CounterRegistryLauncher",
+                "CounterServerLauncher",
+                "CounterClientLauncher",
+                "CounterClientLauncher"
+            ],
+            "stopAll": true
+        }
+    ],
+}

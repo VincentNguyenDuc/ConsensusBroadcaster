@@ -3,7 +3,8 @@ package com.jbroadcast.simulation;
 import com.jbroadcast.remote.server.algorithm.IRemoteBroadcastingServer;
 import com.jbroadcast.remote.server.algorithm.atomic.AtomicRemoteServer;
 import com.jbroadcast.remote.server.algorithm.non_consensus.NonConsensusRemoteServer;
-import com.jbroadcast.utils.ArgsParser;
+import com.jbroadcast.utils.parser.ArgsParser;
+import com.jbroadcast.utils.parser.ParserFactory;
 
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
@@ -22,10 +23,17 @@ public class ServerSimulation extends BaseSimulation {
 
     @Override
     public void init(final String[] args) throws RemoteException {
-        final String rmiRegistryHost = ArgsParser.getRmiRegistryHost(args);
-        final int rmiRegistryPort = ArgsParser.getRmiRegistryPort(args);
-        final String atomicServer = ArgsParser.getAtomicServerName(args);
-        final String nonConsensusServer = ArgsParser.getNonConsensusServerName(args);
+        try {
+            super.init(args);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        final ArgsParser argsParser = ParserFactory.getArgsParser();
+
+        final String rmiRegistryHost = argsParser.getRmiRegistryHost();
+        final int rmiRegistryPort = argsParser.getRmiRegistryPort();
+        final String atomicServer = argsParser.getAtomicServerName();
+        final String nonConsensusServer = argsParser.getNonConsensusServerName();
         final Registry rmiRegistry = LocateRegistry.getRegistry(rmiRegistryHost, rmiRegistryPort);
         final IRemoteBroadcastingServer atomicRemoteServer = new AtomicRemoteServer();
         final IRemoteBroadcastingServer nonConsensusRemoteServer = new NonConsensusRemoteServer();

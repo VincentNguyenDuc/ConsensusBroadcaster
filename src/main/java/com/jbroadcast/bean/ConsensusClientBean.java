@@ -3,7 +3,7 @@ package com.jbroadcast.bean;
 import com.jbroadcast.remote.client.IRemoteRmiClient;
 import com.jbroadcast.remote.server.algorithm.IRemoteBroadcastingServer;
 import com.jbroadcast.simulation.ISimulation;
-import com.jbroadcast.utils.ConsensusAlgorithm;
+import com.jbroadcast.utils.enums.ConsensusAlgorithm;
 
 import java.util.HashMap;
 import java.util.Map;

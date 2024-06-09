@@ -7,6 +7,7 @@ import com.jbroadcast.simulation.ISimulation;
 
 public class CounterClientLauncher {
     public static void main(final String[] args) throws RuntimeException {
+
         // Initialize simulation
         final ISimulation counterClientSimulation = new CounterClientSimulation();
 

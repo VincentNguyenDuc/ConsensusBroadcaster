@@ -5,8 +5,9 @@ import com.jbroadcast.bean.ConsensusClientBean;
 import com.jbroadcast.remote.client.IRemoteRmiClient;
 import com.jbroadcast.remote.client.RemoteRmiClient;
 import com.jbroadcast.remote.server.algorithm.IRemoteBroadcastingServer;
-import com.jbroadcast.utils.ArgsParser;
-import com.jbroadcast.utils.ConsensusAlgorithm;
+import com.jbroadcast.utils.enums.ConsensusAlgorithm;
+import com.jbroadcast.utils.parser.ArgsParser;
+import com.jbroadcast.utils.parser.ParserFactory;
 
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
@@ -16,7 +17,7 @@ import java.rmi.server.UnicastRemoteObject;
 
 public class ClientSimulation extends BaseSimulation {
 
-
+    @Override
     public void start(final String[] args) {
         try {
             this.init(args);
@@ -25,12 +26,21 @@ public class ClientSimulation extends BaseSimulation {
         }
     }
 
+    @Override
     public void init(final String[] args) throws RemoteException, NotBoundException {
+        try {
+            super.init(args);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+        final ArgsParser argsParser = ParserFactory.getArgsParser();
+
         // Look up server proxy from RMI registry
-        final String rmiRegistryHost = ArgsParser.getRmiRegistryHost(args);
-        final int rmiRegistryPort = ArgsParser.getRmiRegistryPort(args);
-        final String atomicServerName = ArgsParser.getAtomicServerName(args);
-        final String nonConsensusServerName = ArgsParser.getNonConsensusServerName(args);
+        final String rmiRegistryHost = argsParser.getRmiRegistryHost();
+        final int rmiRegistryPort = argsParser.getRmiRegistryPort();
+        final String atomicServerName = argsParser.getAtomicServerName();
+        final String nonConsensusServerName = argsParser.getNonConsensusServerName();
         final Registry rmiRegistry = LocateRegistry.getRegistry(rmiRegistryHost, rmiRegistryPort);
 
         final IRemoteBroadcastingServer atomicServerProxy = (IRemoteBroadcastingServer) rmiRegistry.lookup(atomicServerName);

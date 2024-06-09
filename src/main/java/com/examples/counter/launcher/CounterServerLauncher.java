@@ -20,6 +20,5 @@ public class CounterServerLauncher {
 
         // Start the simulation
         counterServerSimulation.start(args);
-
     }
 }
