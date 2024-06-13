@@ -1,24 +1,24 @@
-package com.examples.counter.launcher;
+package com.examples.echoer.launcher;
 
-import com.examples.counter.simulation.EchoerClientSimulation;
+import com.examples.echoer.simulation.EchoerClientSimulation;
 import com.jbroadcast.bean.BeanFactory;
 import com.jbroadcast.bean.ConsensusClientBean;
 import com.jbroadcast.simulation.ISimulation;
 
-public class CounterClientLauncher {
+public class EchoerClientLauncher {
     public static void main(final String[] args) throws RuntimeException {
 
         // Initialize simulation
-        final ISimulation counterClientSimulation = new EchoerClientSimulation();
+        final ISimulation echoerClientSimulation = new EchoerClientSimulation();
 
         // Register simulation to bean
         final ConsensusClientBean clientBean = ConsensusClientBean.getInstance();
-        clientBean.setSimulation(counterClientSimulation);
+        clientBean.setSimulation(echoerClientSimulation);
 
         // Register bean to factory
         BeanFactory.setClientBean(clientBean);
 
         // Start the simulation
-        counterClientSimulation.start(args);
+        echoerClientSimulation.start(args);
     }
 }

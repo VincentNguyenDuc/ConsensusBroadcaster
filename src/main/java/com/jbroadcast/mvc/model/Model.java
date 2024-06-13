@@ -10,11 +10,11 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.rmi.RemoteException;
 
-public abstract class Model implements IModel {
+public abstract class Model<T> implements IModel<T> {
 
     private final PropertyChangeSupport propertyChangeSupport = new PropertyChangeSupport(this);
     private String command;
-    private int result;
+    private T result;
 
     @Override
     public void evaluateCommand(final String aCommand) {
@@ -49,13 +49,13 @@ public abstract class Model implements IModel {
     }
 
     @Override
-    public int getResult() {
+    public T getResult() {
         return this.result;
     }
 
     @Override
-    public void setResult(final int newResult) {
-        final int oldResult = this.result;
+    public void setResult(final T newResult) {
+        final T oldResult = this.result;
         this.result = newResult;
         this.propertyChangeSupport.firePropertyChange(Tracer.RESULT_PROPERTY, oldResult, newResult);
     }

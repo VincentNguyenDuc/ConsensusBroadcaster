@@ -6,6 +6,35 @@
     "configurations": [
         {
             "type": "java",
+            "name": "EchoerClientLauncher",
+            "request": "launch",
+            "mainClass": "com.examples.echoer.launcher.EchoerClientLauncher",
+            "projectName": "ConsensusBroadcaster",
+            "preLaunchTask": "ClientWait",
+            "suppressMultipleSessionWarning": true,
+            "args": [
+                "--rmi-registry-port",
+                "1000",
+                "--rmi-registry-host",
+                "127.0.0.1"
+            ]
+        },
+        {
+            "type": "java",
+            "name": "EchoerServerLauncher",
+            "request": "launch",
+            "mainClass": "com.examples.echoer.launcher.EchoerServerLauncher",
+            "projectName": "ConsensusBroadcaster",
+            "preLaunchTask": "ServerWait",
+            "args": [
+                "--rmi-registry-port",
+                "1000",
+                "--rmi-registry-host",
+                "127.0.0.1"
+            ]
+        },
+        {
+            "type": "java",
             "name": "Current File",
             "request": "launch",
             "mainClass": "${file}"
@@ -27,9 +56,9 @@
         },
         {
             "type": "java",
-            "name": "CounterRegistryLauncher",
+            "name": "RegistryLauncher",
             "request": "launch",
-            "mainClass": "com.examples.counter.launcher.CounterRegistryLauncher",
+            "mainClass": "com.examples.RegistryLauncher",
             "projectName": "ConsensusBroadcaster",
             "args": [
                 "--rmi-registry-port",
@@ -55,12 +84,25 @@
     ],
     "compounds": [
         {
-            "name": "Registry/Server/Clients",
+            "name": "Counter Registry/Server/Clients",
             "configurations": [
-                "CounterRegistryLauncher",
+                "RegistryLauncher",
                 "CounterServerLauncher",
                 "CounterClientLauncher",
+                "CounterClientLauncher",
+                "CounterClientLauncher",
                 "CounterClientLauncher"
+            ],
+            "stopAll": true
+        },
+        {
+            "name": "Echoer Registry/Server/Clients",
+            "configurations": [
+                "RegistryLauncher",
+                "EchoerServerLauncher",
+                "EchoerClientLauncher",
+                "EchoerClientLauncher",
+                "EchoerClientLauncher"
             ],
             "stopAll": true
         }

@@ -1,24 +1,24 @@
-package com.examples.counter.launcher;
+package com.examples.echoer.launcher;
 
 import com.jbroadcast.bean.BeanFactory;
 import com.jbroadcast.bean.ConsensusServerBean;
 import com.jbroadcast.simulation.ISimulation;
 import com.jbroadcast.simulation.ServerSimulation;
 
-public class CounterServerLauncher {
+public class EchoerServerLauncher {
     public static void main(final String[] args) {
 
         // Initialize simulation
-        final ISimulation counterServerSimulation = new ServerSimulation();
+        final ISimulation echoerServerSimulation = new ServerSimulation();
 
         // Register simulation to bean
         final ConsensusServerBean consensusServerBean = ConsensusServerBean.getInstance();
-        consensusServerBean.setSimulation(counterServerSimulation);
+        consensusServerBean.setSimulation(echoerServerSimulation);
 
         // Register bean to factory
         BeanFactory.setServerBean(ConsensusServerBean.getInstance());
 
         // Start the simulation
-        counterServerSimulation.start(args);
+        echoerServerSimulation.start(args);
     }
 }

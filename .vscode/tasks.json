@@ -6,7 +6,7 @@
         {
             "label": "ClientWait",
             "type": "shell",
-            "command": "sleep 1",
+            "command": "sleep 5",
             "group": "none",
             "presentation": {
                 "reveal": "never"
