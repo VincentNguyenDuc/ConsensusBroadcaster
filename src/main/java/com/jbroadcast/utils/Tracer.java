@@ -3,7 +3,6 @@ package com.jbroadcast.utils;
 
 public class Tracer {
     public static final String COMMAND_PROPERTY = "command";
-    public static final String RESULT_PROPERTY = "result";
     public static final String IPC_MECHANISM_PROPERTY = "ipc_mechanism";
     public static final String CONSENSUS_ALGORITHM_PROPERTY = "consensus_algorithm";
     public static final String LOCAL_PROCESSING_PROPERTY = "local_processing";

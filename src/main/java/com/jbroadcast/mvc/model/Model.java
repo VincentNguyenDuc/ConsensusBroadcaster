@@ -10,11 +10,10 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.rmi.RemoteException;
 
-public abstract class Model<T> implements IModel<T> {
+public abstract class Model implements IModel {
 
     private final PropertyChangeSupport propertyChangeSupport = new PropertyChangeSupport(this);
     private String command;
-    private T result;
 
     @Override
     public void evaluateCommand(final String aCommand) {
@@ -46,18 +45,6 @@ public abstract class Model<T> implements IModel<T> {
         if (BeanFactory.getClientBean().getLocalProcessing()) {
             this.evaluateCommand(newCommand);
         }
-    }
-
-    @Override
-    public T getResult() {
-        return this.result;
-    }
-
-    @Override
-    public void setResult(final T newResult) {
-        final T oldResult = this.result;
-        this.result = newResult;
-        this.propertyChangeSupport.firePropertyChange(Tracer.RESULT_PROPERTY, oldResult, newResult);
     }
 
     public void setConsensusAlgorithm(final ConsensusAlgorithm aConsensusAlgorithm) {

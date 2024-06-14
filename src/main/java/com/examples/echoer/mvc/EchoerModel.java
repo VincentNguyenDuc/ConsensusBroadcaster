@@ -2,9 +2,10 @@ package com.examples.echoer.mvc;
 
 import com.jbroadcast.mvc.model.Model;
 
-public class EchoerModel extends Model<String> implements IEchoer {
+public class EchoerModel extends Model implements IEchoer {
 
     public static final String ECHO_COMMAND = "echo:";
+    public static final String ECHO_PROPERTY = "echo";
 
     @Override
     public void evaluateCommand(final String aCommand) {
@@ -17,6 +18,6 @@ public class EchoerModel extends Model<String> implements IEchoer {
 
     @Override
     public void echo(final String message) {
-        super.setResult(message);
+        this.getPropertyChangeSupport().firePropertyChange(ECHO_PROPERTY, null, message);
     }
 }

@@ -2,9 +2,11 @@ package com.examples.counter.mvc;
 
 import com.jbroadcast.mvc.model.Model;
 
-public class CounterModel extends Model<Integer> implements ICounter {
+public class CounterModel extends Model implements ICounter {
 
     public static final String INCREMENT_COMMAND = "increment";
+    public static final String COUNTER_PROPERTY = "counter";
+    private int counter = 0;
 
     @Override
     public void evaluateCommand(final String aCommand) {
@@ -16,6 +18,8 @@ public class CounterModel extends Model<Integer> implements ICounter {
 
     @Override
     public void increment() {
-        super.setResult(this.getResult() + 1);
+        final int newValue = this.counter + 1;
+        this.getPropertyChangeSupport().firePropertyChange(COUNTER_PROPERTY, this.counter, newValue);
+        this.counter += newValue;        
     }
 }

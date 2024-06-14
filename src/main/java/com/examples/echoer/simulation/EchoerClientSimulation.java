@@ -13,7 +13,8 @@ import com.jbroadcast.remote.client.ClientOutCoupler;
 import com.jbroadcast.simulation.ClientSimulation;
 
 public class EchoerClientSimulation extends ClientSimulation {
-        @Override
+    
+    @Override
     public void start(final String[] args) {
         super.start(args);
     }
