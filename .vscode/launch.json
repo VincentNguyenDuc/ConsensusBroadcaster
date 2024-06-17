@@ -80,6 +80,16 @@
                 "--rmi-registry-host",
                 "127.0.0.1"
             ]
+        },
+        {
+            "type": "java",
+            "name": "TestHelp",
+            "request": "launch",
+            "mainClass": "com.examples.counter.launcher.CounterServerLauncher",
+            "projectName": "ConsensusBroadcaster",
+            "args": [
+                "--help"
+            ]
         }
     ],
     "compounds": [

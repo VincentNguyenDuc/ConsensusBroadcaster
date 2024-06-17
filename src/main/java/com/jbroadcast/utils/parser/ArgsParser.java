@@ -16,6 +16,13 @@ public class ArgsParser {
     @Parameter(names = "--non-consensus-server-name", description = "Name of Non-Consensus Server")
     private String nonConsensusServerName = "NON_CONSENSUS_SERVER";
 
+    @Parameter(names = { "--help"}, description = "Show these information", help = true)
+    private boolean help = false;
+
+    public boolean isHelp() {
+        return help;
+    }
+
     private ArgsParser() {
     }
 

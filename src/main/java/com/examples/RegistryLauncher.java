@@ -14,11 +14,17 @@ public class RegistryLauncher {
             ParserFactory.setArgsParser(ArgsParser.getInstance());
             final ArgsParser argsParser = ParserFactory.getArgsParser();
 
-            JCommander
+            final JCommander jct = JCommander
                 .newBuilder()
                 .addObject(argsParser)
-                .build()
-                .parse(args);
+                .build();
+            
+            jct.parse(args);
+            
+            if (argsParser.isHelp()) {
+                jct.usage();
+                return;
+            }
 
             final String rmiRegistryHost = argsParser.getRmiRegistryHost();
             final int port = argsParser.getRmiRegistryPort();

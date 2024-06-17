@@ -15,11 +15,18 @@ public abstract class BaseSimulation implements ISimulation {
     @Override
     public void init(final String[] args) throws Exception {
         ParserFactory.setArgsParser(ArgsParser.getInstance());
+        final ArgsParser argsParser = ParserFactory.getArgsParser();
 
-        JCommander
-            .newBuilder()
-            .addObject(ParserFactory.getArgsParser())
-            .build()
-            .parse(args);
+        final JCommander jct = JCommander
+                .newBuilder()
+                .addObject(argsParser)
+                .build();
+
+        jct.parse(args);
+
+        if (argsParser.isHelp()) {
+            jct.usage();
+            System.exit(0);
+        }
     }
 }
